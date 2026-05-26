@@ -15,7 +15,10 @@ hours = st.number_input("Enter Study Hours", min_value=0.0)
 
 # Prediction button
 if st.button("Predict"):
-
-    prediction = model.predict(np.array([[hours]]))
+    import pandas as pd
+    
+    # Create a DataFrame with the same column name as training data
+    input_data = pd.DataFrame({'hours': [hours]})
+    prediction = model.predict(input_data)
 
     st.success(f"Predicted Marks: {prediction[0]:.2f}")
